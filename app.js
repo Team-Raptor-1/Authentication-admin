@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
+const path = require('path');
 
 const errorMiddleware = require("./middleware/error");
 
@@ -17,6 +18,8 @@ const private = require("./routes/private");
 
 app.use("/api/auth", user);
 app.use("/api/private", private);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api', require('./Routes/Crud'))
 
 
 
